@@ -21,9 +21,10 @@ body {
 
 .hero {
   width: 100%;
-  padding: 28px 16px 10px;
+  padding: 80px 16px 10px; /* Aumentado o padding-top para dar espaço ao logo */
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .hero-inner {
@@ -32,11 +33,12 @@ body {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 22px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
-  padding: 32px 32px 28px;
+  padding: 80px 32px 28px; /* Aumentado o padding-top interno */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
+  position: relative;
 }
 
 /* Texto do hero */
@@ -118,26 +120,42 @@ body {
   box-shadow: 0 6px 18px rgba(26, 72, 116, 0.2);
 }
 
-/* Logo e badge */
+/* * ====================================== 
+* ATUALIZAÇÃO: LOGO E BADGE (SOBREPOSIÇÃO)
+* ======================================
+*/
 .hero-logo-wrapper {
-  flex: 1;
-  text-align: center;
+    /* Logo sobreposto à caixa branca */
+    position: absolute;
+    top: -60px; /* Posiciona metade do logo fora da caixa */
+    right: 60px;
+    width: 200px; 
+    height: 200px;
+    z-index: 10;
+    text-align: center;
 }
 
 .header-logo {
-  width: 120px;
-  max-width: 40vw;
+    /* Posicionamento do logo */
+    width: 150px;
+    max-width: none; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15)); /* Sombra para destaque */
 }
 
 .hero-badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 6px 12px;
-  font-size: 0.8rem;
-  border-radius: 999px;
-  background: #e6f1ff;
-  color: #245184;
-  font-weight: 500;
+    /* Badge abaixo do logo */
+    margin-top: 8px;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border-radius: 999px;
+    background: #e6f1ff;
+    color: #245184;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ====== MAIN SECTION ====== */
@@ -188,7 +206,7 @@ body {
   overflow: hidden;
 }
 
-/* === Hover dos Cards — mesma cor do botão "Sou Aluno" (#ffb347) === */
+/* === Hover dos Cards – mesma cor do botão "Sou Aluno" (#ffb347) === */
 
 .card:hover {
   background: #ffb347;
@@ -287,17 +305,19 @@ body {
 /* ====== RESPONSIVO ====== */
 
 @media (max-width: 900px) {
+  .hero-logo-wrapper {
+    position: static;
+    margin: 0 auto 20px;
+  }
+
   .hero-inner {
     flex-direction: column;
     text-align: center;
+    padding-top: 32px;
   }
 
   .hero-text {
     order: 2;
-  }
-
-  .hero-logo-wrapper {
-    order: 1;
   }
 
   .hero-actions {
@@ -311,6 +331,10 @@ body {
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding-top: 60px;
+  }
+
   .hero-inner {
     padding: 24px 18px;
   }
@@ -345,4 +369,3 @@ body {
 .btn:hover .btn-icon svg {
   fill: #0e1b24;
 }
-
