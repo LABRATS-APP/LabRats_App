@@ -1,0 +1,192 @@
+/* ========================================================= */
+/* ===========  ESTILOS ESPECÍFICOS DA ÁREA DO ALUNO ======= */
+/* ========================================================= */
+/* Nota: estilos globais (body, .screen, .bottom-nav, etc.)
+   vêm agora de stylehome.css                              */
+
+/* HEADER DO ALUNO */
+/* HEADER DO ALUNO */
+.top.student-top {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 16px;
+  padding: 16px 20px 12px;
+  background-color: #ffffff;                  /* deixa de ser azul, passa a card branco */
+  border-radius: 18px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+.student-id {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.student-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--blue-main);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.student-name {
+  margin: 0;
+  font-size: 22px;
+}
+
+.student-line {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #355572;
+}
+
+/* CONTEÚDO PRINCIPAL */
+/* Estrutura */
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 👉 centra header + main */
+  padding-bottom: 96px;     /* espaço para a low bar */
+}
+
+/* CONTEÚDO PRINCIPAL */
+.student-main {
+  width: 100%;
+  max-width: 720px;         /* 👉 mesma largura para todos os cards */
+  padding: 10px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                /* distância entre cards */
+}
+
+
+/* Cards genéricos desta página
+   (herdam base de .card do stylehome, se existir) */
+/* Cards genéricos */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  width: 100%;
+  max-width: 720px;         
+  margin: 0 auto;           
+}
+
+
+
+.card-title {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.card-subtitle {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Próxima explicação */
+.next-lesson-card .next-lesson-when {
+  margin: 4px 0 2px;
+  font-weight: 600;
+  color: var(--blue-main);
+  font-size: 15px;
+}
+
+.next-lesson-subject {
+  margin: 0 0 2px;
+  font-size: 14px;
+}
+
+.next-lesson-center {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Conteúdos 5º ano */
+.year-content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.content-chip {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--blue-main);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0b4e86;
+  transition: transform 0.06s ease, opacity 0.15s ease;
+}
+
+.content-chip:active {
+  transform: translateY(1px);
+}
+
+.content-chip:hover {
+  opacity: 0.95;
+}
+
+/* Jogo diário */
+.daily-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.daily-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fde68a;
+  color: #92400e;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-play {
+  margin-top: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  background: #22c55e;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #15803d;
+  transition: transform 0.06s ease, opacity 0.15s ease;
+}
+
+.btn-play:hover {
+  opacity: 0.96;
+}
+
+.btn-play:active {
+  transform: translateY(1px);
+}
+
+/* Ajustes em ecrãs maiores */
+@media (min-width: 480px) {
+  .student-main {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}

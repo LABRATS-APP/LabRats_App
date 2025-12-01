@@ -1,0 +1,186 @@
+/* ========================================================= */
+/* ==========  ESTILOS ESPECÍFICOS DA PÁGINA CENTRO ======== */
+/* ========================================================= */
+/* Base global (body, .screen, .bottom-nav, etc.)
+   vem de stylehome.css                                     */
+
+/* Cabeçalho (usa .top do stylehome para alinhamento) */
+/* Se quiseres algo diferente só no centro, podes usar
+   .top.centro-top no HTML e aqui:                         */
+/*
+.top.centro-top h1 { ... }
+*/
+
+/* CONTEÚDO PRINCIPAL – centrado e com largura limitada */
+.centro-main {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 24px;
+}
+
+/* CARTÕES GENÉRICOS DO CENTRO */
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  color: var(--blue-main);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #3f4d5d;
+}
+
+/* Bloco pedir código */
+.subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+#codigo-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+#codigo-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  background: var(--blue-main);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0b4e86;
+  transition: transform 0.06s ease, opacity 0.15s ease;
+}
+
+#codigo-btn:hover {
+  opacity: 0.96;
+}
+
+#codigo-btn:active {
+  transform: translateY(1px);
+}
+
+.hidden {
+  display: none;
+}
+
+.erro-msg {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* CONTEÚDOS DO CENTRO */
+.centro-content-list {
+  display: grid;
+  gap: 8px;
+}
+
+.centro-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--blue-main);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0b4e86;
+  transition: transform 0.06s ease, opacity 0.15s ease;
+}
+
+.centro-item:hover {
+  opacity: 0.96;
+}
+
+.centro-item:active {
+  transform: translateY(1px);
+}
+
+/* PROFESSORES */
+.prof-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prof-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.prof-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--blue-main);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.prof-name {
+  margin: 0;
+  font-size: 14px;
+}
+
+.prof-sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* AVISOS */
+.avisos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.avisos-list li + li {
+  margin-top: 4px;
+}
+
+/* Em ecrãs mais pequenos */
+@media (max-width: 480px) {
+  .centro-main {
+    max-width: 100%;
+    padding: 12px;
+  }
+
+  .card {
+    border-radius: 16px;
+    padding: 14px 14px;
+  }
+}
