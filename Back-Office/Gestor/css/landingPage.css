@@ -118,59 +118,26 @@ body {
   box-shadow: 0 6px 18px rgba(26, 72, 116, 0.2);
 }
 
-/* * ====================================== 
-* ATUALIZAÇÃO CORRIGIDA: LOGO E BADGE (SOBREPOSIÇÃO)
-* ======================================
-*/
+/* Logo e badge */
 .hero-logo-wrapper {
-    /* Define o contexto de posicionamento */
-    position: relative; 
-    
-    /* Usa padding-top em vez de height fixo para dar espaço ao logo no topo */
-    padding-top: 130px; 
-    width: 200px; 
-    margin: 0 auto;
-    
-    flex: 1; 
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .header-logo {
-    /* Posicionamento absoluto e ordem de empilhamento superior (por cima) */
-    position: absolute; 
-    
-    /* Centraliza a imagem no topo do wrapper */
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); 
-    
-    width: 150px; /* Tamanho do logo */
-    max-width: none; 
-    height: auto;
-    
-    z-index: 2; /* CRUCIAL: Por cima */
+  width: 120px;
+  max-width: 40vw;
 }
 
 .hero-badge {
-    /* Posicionamento absoluto e ordem de empilhamento inferior (por baixo) */
-    position: absolute;
-    
-    /* Posiciona o badge abaixo do logo para criar a sobreposição visual */
-    top: 115px; /* Valor ajustado para que fique por baixo do logo (top 0 + altura do logo - sobreposição) */
-    
-    /* Centraliza o badge horizontalmente */
-    left: 50%;
-    transform: translateX(-50%); 
-    z-index: 1; /* Por baixo */
-
-    /* Estilos originais/ajustados */
-    display: inline-block;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    border-radius: 999px;
-    background: #e6f1ff;
-    color: #245184;
-    font-weight: 500;
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  background: #e6f1ff;
+  color: #245184;
+  font-weight: 500;
 }
 
 /* ====== MAIN SECTION ====== */
@@ -329,11 +296,8 @@ body {
     order: 2;
   }
 
-  /* Garante que o bloco logo/badge seja posicionado no topo */
   .hero-logo-wrapper {
     order: 1;
-    margin-bottom: 20px; 
-    padding-top: 130px; /* Mantém o padding-top para o posicionamento do badge */
   }
 
   .hero-actions {
@@ -381,3 +345,4 @@ body {
 .btn:hover .btn-icon svg {
   fill: #0e1b24;
 }
+
