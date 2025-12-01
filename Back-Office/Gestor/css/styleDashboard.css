@@ -1,0 +1,987 @@
+/* ================== RESET ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-main: #0b63b4;
+  --blue-soft: #d8ecff;
+  --blue-soft-strong: #e4f1ff;
+  --card-bg: #ffffff;
+  --bg-main: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --shadow-soft: 0 4px 10px rgba(15, 23, 42, 0.06);
+  --shadow-strong: 0 10px 24px rgba(15, 23, 42, 0.12);
+  --radius-card: 16px;
+  --sidebar-width: 250px;
+  --transition-fast: 0.2s ease;
+  --yellow-pill: #fef3c7;
+  --yellow-pill-text: #92400e;
+
+  /* cores suaves extra */
+  --yellow-soft: #fffbeb;
+  --green-soft: #ecfdf3;
+  --purple-soft: #f5f3ff;
+}
+
+/* ================== BASE ================== */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* ================== SIDEBAR ================== */
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.sidebar .logo img {
+  width: 120px;
+  height: auto;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav li {
+  margin-bottom: 12px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar nav a:hover {
+  background-color: #e5edff;
+}
+
+.sidebar nav a.active {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.add-auditoria {
+  margin-top: 12px;
+}
+
+.add-auditoria button {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 2px solid #9ca3af;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.add-auditoria button:hover {
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.user-info {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.user-info p:first-child {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ================== CONTENT AREA ================== */
+
+.content {
+  margin-left: var(--sidebar-width);
+  padding: 26px 28px;
+  width: calc(100% - var(--sidebar-width));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header em todas as páginas (título + botão menu em mobile) */
+.content-header {
+  width: 100%;
+  max-width: 1300px;
+  padding: 18px 24px;
+  border-radius: var(--radius-card);
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.content-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* ================== BOTÃO MENU / DRAWER ================== */
+
+.menu-toggle {
+  display: none; /* só mostra em mobile */
+  border: none;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.menu-toggle:hover {
+  background: #f3f4f6;
+}
+
+.menu-toggle svg {
+  display: block;
+}
+
+/* backdrop para quando o drawer está aberto em mobile */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 800;
+}
+
+.sidebar-backdrop.show {
+  display: block;
+}
+
+/* ================== COMPONENTES GENÉRICOS ================== */
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 16px 18px;
+}
+
+/* pills */
+.pill {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* listas sem bullet */
+ul.clean-list {
+  list-style: none;
+}
+
+/* cabeçalhos de secção */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* textos */
+.text-muted {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ================== PÁGINA GERAL (dashboard) ================== */
+
+.dashboard-grid {
+  width: 100%;
+  max-width: 1500px;
+  display: grid;
+  grid-template-columns: 1.9fr 1.9fr;
+  gap: 24px;
+}
+
+/* cards do dashboard */
+.dashboard-card {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 22px 28px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* exemplo de lista de próximas aulas */
+.next-classes-list {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.next-class-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.next-class-item:last-child {
+  border-bottom: none;
+}
+
+.next-class-time {
+  font-weight: 600;
+  color: var(--blue-main);
+}
+
+.next-class-title {
+  font-weight: 600;
+}
+
+.next-class-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================== PÁGINA ALUNOS (lista) ================== */
+
+.students-container {
+  width: 100%;
+  max-width: 1500px;
+}
+
+.students-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.students-header-row h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.students-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.students-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.student-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.student-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+  background: #f9fafb;
+}
+
+.student-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--blue-main);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.student-main-info {
+  flex: 1;
+}
+
+.student-main-column,
+.student-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.student-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.student-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.student-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b91c1c;
+}
+
+/* ================== PÁGINA ALUNO (detalhe) ================== */
+
+.student-header {
+  align-items: center;
+}
+
+.student-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.student-avatar-big {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  background: var(--blue-main);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.student-header-left h1 {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.student-info-line {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.student-info-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* grid principal do detalhe */
+.student-detail-grid {
+  width: 100%;
+  max-width: 1300px;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr);
+  gap: 20px;
+}
+
+.student-panel {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 16px 18px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.panel-header h2 {
+  font-size: 16px;
+}
+
+.panel-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ====== CORES ESPECÍFICAS DOS CARDS DO ALUNO ====== */
+
+/* Mensagens – azul suave */
+.student-main-column .student-panel {
+  background: #eef6ff;
+  border: 1px solid #c7ddff;
+}
+.student-main-column .panel-header h2 {
+  color: var(--blue-main);
+}
+
+/* Exercícios – verde suave */
+.student-side-column .student-panel:nth-of-type(1) {
+  background: var(--green-soft);
+  border: 1px solid #bbf7d0;
+}
+.student-side-column .student-panel:nth-of-type(1) .panel-header h2 {
+  color: #15803d;
+}
+
+/* Dificuldades – amarelo suave */
+.student-side-column .student-panel:nth-of-type(2) {
+  background: var(--yellow-soft);
+  border: 1px solid #fed7aa;
+}
+.student-side-column .student-panel:nth-of-type(2) .panel-header h2 {
+  color: #b45309;
+}
+
+/* Próxima aula – lilás suave */
+.student-side-column .student-panel:nth-of-type(3) {
+  background: var(--purple-soft);
+  border: 1px solid #ddd6fe;
+}
+.student-side-column .student-panel:nth-of-type(3) .panel-header h2 {
+  color: #6d28d9;
+}
+
+/* ====== MENSAGENS (balões) ====== */
+
+.messages-thread {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-bubble {
+  max-width: 100%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+.message-student {
+  align-self: flex-start;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+}
+
+.message-teacher {
+  align-self: flex-end;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+}
+
+.message-text {
+  margin: 0 0 4px;
+}
+
+.message-time {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* ====== DIFICULDADES (lista + bullets) ====== */
+
+.difficulties-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0;
+}
+
+.difficulty-item {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.difficulty-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f97316;
+}
+
+.difficulty-item:nth-of-type(1)::before { background: #ef4444; }
+.difficulty-item:nth-of-type(2)::before { background: #f97316; }
+.difficulty-item:nth-of-type(3)::before { background: #facc15; }
+
+.difficulty-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.difficulty-topic {
+  font-weight: 600;
+}
+
+.difficulty-percent {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.difficulty-bar {
+  margin-top: 3px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.2);
+  overflow: hidden;
+}
+
+.difficulty-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f97316, #facc15);
+}
+
+/* Próxima aula box */
+.next-lesson-box {
+  font-size: 13px;
+}
+.next-lesson-time {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.next-lesson-subject {
+  font-weight: 600;
+}
+.next-lesson-mode {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ================== PÁGINA CONTEÚDOS ================== */
+
+.contents-container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.content-source-toggle {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 999px;
+  background: #e5edff;
+  margin-bottom: 14px;
+  gap: 4px;
+}
+
+.source-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.source-btn.active {
+  background: #ffffff;
+  color: #1d4ed8;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.content-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 14px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.filter-group select {
+  min-width: 170px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  appearance: none;
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.content-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+.content-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.content-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pill-centro {
+  background: var(--yellow-pill);
+  color: var(--yellow-pill-text);
+}
+
+.pill-app {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.content-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.content-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.content-description {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.no-results {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ================== PÁGINA HORÁRIO ================== */
+
+.schedule-container {
+  width: 100%;
+  max-width: 1500px;
+}
+
+/* wrapper da tabela */
+.schedule-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* a tabela em si */
+.schedule-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  font-size: 13px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-table th {
+  background: #eff6ff;
+  font-weight: 600;
+}
+
+.schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ================== FORMULÁRIOS (AddConteudos) ================== */
+
+/* mesma largura para o título e para o formulário */
+.content-header,
+.form-container {
+  width: 100%;
+  max-width: 1300px;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 18px 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  flex: 1 1 220px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--blue-main);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* Listas do dashboard (mensagens / conteúdos) */
+.dashboard-list {
+  list-style: none;
+  margin-top: 4px;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dashboard-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.dash-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* bolinha das mensagens */
+.message-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f97316;
+}
+
+.message-dot-muted {
+  background: #9ca3af;
+}
+
+.dash-text-strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.dash-text-muted {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* texto no rodapé dos cards */
+.card-footer-text {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ================== RESPONSIVO (DRAWER) ================== */
+
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    height: 100vh;
+    border-radius: 0 20px 20px 0;
+    z-index: 1001;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 16px 14px 24px;
+  }
+
+  .content-header {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    margin-bottom: 14px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dashboard-grid,
+  .student-detail-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .content-filters {
+    gap: 10px 14px;
+  }
+
+  .form-card {
+    padding: 14px 14px 18px;
+  }
+
+  .schedule-container {
+    max-width: 100%;
+  }
+
+  .schedule-table-wrapper {
+    max-width: 100%;
+  }
+}

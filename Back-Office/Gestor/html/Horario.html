@@ -4,32 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Horário - LABRATS</title>
-  <link rel="stylesheet" href="../css/NovasOcorrencias.css" />
+
+  <!-- CSS global do back-office -->
+  <link rel="stylesheet" href="../css/styleDashboard.css" />
   <link rel="icon" href="../Imagens/Logo.png" type="image/x-icon" />
-    <!-- Google tag (gtag.js) -->
+
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP70GQF1B5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-SP70GQF1B5');
   </script>
 </head>
 <body>
+  <!-- SIDEBAR -->
   <div class="sidebar" style="background-color: #D8ECFF;">
     <div class="logo">
-      <img src="../Imagens/Logo.png" alt="EyesEverywhere" />
+      <img src="../Imagens/Logo.png" alt="LABRATS" />
     </div>
     <nav>
       <ul>
         <li><a data-page="Geral.html" href="Geral.html">🏠 Visão Geral</a></li>
         <li><a class="active" data-page="Horario.html" href="Horario.html">🗓️ Horário</a></li>
         <li><a data-page="Alunos.html" href="Alunos.html">👥 Alunos</a></li>
-        <li><a data-page="Conteudos.html" href="Conteudos.html">📚 Conteúdos</a></li>    
+        <li><a data-page="Conteudos.html" href="Conteudos.html">📚 Conteúdos</a></li>
       </ul>
     </nav>
-    <div class="add-auditoria"> 
+    <div class="add-auditoria">
       <a href="AddConteudos.html">
         <button>+ Adicionar Conteúdo</button>
       </a>
@@ -38,89 +41,100 @@
       <p id="user-name">Versão MVP</p>
       <p id="user-email">Sem e-mail</p>
     </div>
-  </div>
+  </div> <!-- fim sidebar -->
 
-  <!-- FECHA A SIDEBAR AQUI -->
-  </div>
+  <!-- BACKDROP DO DRAWER (mobile) -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
   <!-- CONTEÚDO PRINCIPAL -->
   <div class="content">
     <header class="content-header">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="#1f2937" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
       <h1>Horário</h1>
     </header>
 
     <section class="schedule-container">
       <!-- Formulário para adicionar marcações -->
-      <form id="add-slot-form" class="schedule-form">
-        <div class="form-group">
-          <label for="day">Dia</label>
-          <select id="day" name="day" required>
-            <option value="segunda">Segunda</option>
-            <option value="terca">Terça</option>
-            <option value="quarta">Quarta</option>
-            <option value="quinta">Quinta</option>
-            <option value="sexta">Sexta</option>
-            <option value="sabado">Sábado</option>
-            <option value="domingo">Domingo</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="hour">Início</label>
-          <select id="start-hour" name="hour" required>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-          </select>
-        </div>
+      <form id="add-slot-form" class="schedule-form form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="day">Dia</label>
+            <select id="day" name="day" required>
+              <option value="segunda">Segunda</option>
+              <option value="terca">Terça</option>
+              <option value="quarta">Quarta</option>
+              <option value="quinta">Quinta</option>
+              <option value="sexta">Sexta</option>
+              <option value="sabado">Sábado</option>
+              <option value="domingo">Domingo</option>
+            </select>
+          </div>
 
           <div class="form-group">
-          <label for="hour">Fim</label>
-          <select id="end-hour" name="hour" required>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-          </select>
+            <label for="start-hour">Início</label>
+            <select id="start-hour" name="hour" required>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="end-hour">Fim</label>
+            <select id="end-hour" name="hour" required>
+              <option value="08:00">08:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+            </select>
+          </div>
+
+          <div class="form-group form-group-wide">
+            <label for="description">Descrição</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="David"
+              required
+            />
+          </div>
         </div>
 
-        <div class="form-group form-group-wide">
-          <label for="description">Descrição</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            placeholder="David"
-            required
-          />
+        <div class="form-actions">
+          <button type="submit" class="btn-primary btn-add-slot">+ Adicionar ao horário</button>
         </div>
-
-        <button type="submit" class="btn-add-slot">+ Adicionar ao horário</button>
       </form>
 
       <!-- Tabela do horário -->
-      <div class="schedule-table-wrapper">
+      <div class="schedule-table-wrapper" style="margin-top: 16px;">
         <table class="schedule-table">
           <thead>
             <tr>
@@ -298,8 +312,35 @@
     </section>
   </div>
 
-  <!-- JS PARA LIGAR O FORM AO HORÁRIO -->
+  <!-- JS PARA LIGAR O FORM AO HORÁRIO + DRAWER -->
   <script>
+    // Drawer (menu lateral em mobile)
+    const sidebar = document.querySelector('.sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const menuToggle = document.getElementById('menu-toggle');
+
+    function toggleSidebar() {
+      if (!sidebar || !backdrop) return;
+      sidebar.classList.toggle('sidebar-open');
+      backdrop.classList.toggle('show');
+    }
+
+    if (menuToggle) menuToggle.addEventListener('click', toggleSidebar);
+    if (backdrop) backdrop.addEventListener('click', toggleSidebar);
+
+    // Atualizar utilizador na sidebar a partir do localStorage
+    function atualizarUtilizador() {
+      const nome = localStorage.getItem("userName") || "Versão MVP";
+      const email = localStorage.getItem("userEmail") || "Sem e-mail";
+      const nameEl = document.getElementById("user-name");
+      const emailEl = document.getElementById("user-email");
+      if (nameEl) nameEl.innerText = nome;
+      if (emailEl) emailEl.innerText = email;
+    }
+
+    atualizarUtilizador();
+
+    // Lógica do formulário de horário
     const form = document.getElementById('add-slot-form');
 
     form.addEventListener('submit', function (e) {
@@ -343,7 +384,6 @@
         cell.classList.remove('busy-slot');
       });
     });
-
   </script>
 </body>
 </html>
