@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planos LABRATS</title>
+
+  <style>
+    :root {
+      --blue-main: #0765A4;
+      --blue-soft: #D8ECFF;
+      --purple-soft: #F0EBFF;
+      --card-bg: #ffffff;
+      --bg-main: #f9fafb;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --radius-card: 18px;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      padding: 40px 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .pricing-page {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .pricing-header h1 {
+      font-size: 2.1rem;
+      margin-bottom: 8px;
+    }
+
+    .pricing-header p {
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 0.98rem;
+    }
+
+    .pricing-toggle {
+      margin-top: 20px;
+      display: inline-flex;
+      padding: 4px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
+    }
+
+    .pricing-toggle button {
+      border: none;
+      background: transparent;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      cursor: default;
+      font-weight: 500;
+    }
+
+    .pricing-toggle button.active {
+      background: #fff;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+      color: var(--blue-main);
+    }
+
+    .pricing-base {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-base strong {
+      color: var(--text-main);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .pricing-card.business {
+      background: var(--purple-soft);
+      border: 1px solid #ddd6fe;
+    }
+
+    .badge-recommended {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .plan-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .plan-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-main {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .price-eur {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: -4px;
+    }
+
+    .price-total {
+      font-size: 0.9rem;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .features {
+      list-style: none;
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .features li::before {
+      content: "✓";
+      margin-right: 6px;
+      color: var(--blue-main);
+      font-weight: 600;
+    }
+
+    .plan-cta {
+      margin-top: 14px;
+    }
+
+    .plan-cta button {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--blue-main);
+      color: #fff;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+    }
+
+    .pricing-card.business .plan-cta button {
+      background: #4f46e5;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+    }
+
+    .plan-cta button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+    }
+
+    .plan-footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <main class="pricing-page">
+    <header class="pricing-header">
+      <h1>Atualize o seu plano LABRATS</h1>
+      <p>
+        Pague um valor base por centro de estudos e escolha o pack de alunos que
+        melhor se adapta à sua realidade. Pode sempre crescer mais tarde.
+      </p>
+
+      <!-- Só um “toggle” visual, podes depois ligar a JS se quiseres -->
+      <div class="pricing-toggle">
+        <button class="active">Mensal</button>
+        <button>Brevemente: Anual (-10%)</button>
+      </div>
+
+      <div class="pricing-base">
+        <strong>Preço base:</strong> 10&nbsp;€/mês por centro de estudos
+      </div>
+    </header>
+
+    <section class="pricing-grid">
+      <!-- PACK 10 ALUNOS -->
+      <article class="pricing-card">
+        <div>
+          <div class="plan-name">Pack 10 alunos</div>
+          <div class="plan-subtitle">Ideal para centros pequenos ou fase piloto</div>
+        </div>
+
+        <div>
+          <div class="price-row">
+            <span class="price-main">30€</span>
+            <span class="price-eur">/ mês</span>
+          </div>
+          <p class="price-note">+ 10€ base por centro</p>
+          <p class="price-total">Total: <strong>40€ / mês</strong></p>
+        </div>
+
+        <ul class="features">
+          <li>Até 10 alunos ativos em simultâneo</li>
+          <li>Acesso completo à app LABRATS</li>
+          <li>Área de gestão para professores</li>
+          <li>Suporte por e-mail</li>
+        </ul>
+
+        <div class="plan-cta">
+          <button>Começar com 10 alunos</button>
+        </div>
+
+        <p class="plan-footer">Pode atualizar para um pack superior quando quiser.</p>
+      </article>
+
+      <!-- PACK 20 ALUNOS (RECOMENDADO) -->
+      <article class="pricing-card business">
+        <span class="badge-recommended">RECOMENDADO</span>
+
+        <div>
+          <div class="plan-name">Pack 20 alunos</div>
+          <div class="plan-subtitle">Equilíbrio perfeito entre preço e capacidade</div>
+        </div>
+
+        <div>
+          <div class="price-row">
+            <span class="price-main">55€</span>
+            <span class="price-eur">/ mês</span>
+          </div>
+          <p class="price-note">+ 10€ base por centro</p>
+          <p class="price-total">Total: <strong>65€ / mês</strong></p>
+        </div>
+
+        <ul class="features">
+          <li>Até 20 alunos ativos em simultâneo</li>
+          <li>Relatórios de utilização por aluno</li>
+          <li>Prioridade na sugestão de novos conteúdos</li>
+          <li>Suporte por e-mail e chat</li>
+        </ul>
+
+        <div class="plan-cta">
+          <button>Escolher Pack 20 alunos</button>
+        </div>
+
+        <p class="plan-footer">Recomendado para a maioria dos centros de estudo.</p>
+      </article>
+
+      <!-- PACK 30 ALUNOS -->
+      <article class="pricing-card">
+        <div>
+          <div class="plan-name">Pack 30 alunos</div>
+          <div class="plan-subtitle">Para centros com maior volume de alunos</div>
+        </div>
+
+        <div>
+          <div class="price-row">
+            <span class="price-main">80€</span>
+            <span class="price-eur">/ mês</span>
+          </div>
+          <p class="price-note">+ 10€ base por centro</p>
+          <p class="price-total">Total: <strong>90€ / mês</strong></p>
+        </div>
+
+        <ul class="features">
+          <li>Até 30 alunos ativos em simultâneo</li>
+          <li>Todas as funcionalidades dos planos anteriores</li>
+          <li>Onboarding dedicado da equipa LABRATS</li>
+          <li>Prioridade máxima no suporte</li>
+        </ul>
+
+        <div class="plan-cta">
+          <button>Escalar para 30 alunos</button>
+        </div>
+
+        <p class="plan-footer">Ideal para centros já consolidados ou em crescimento.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
